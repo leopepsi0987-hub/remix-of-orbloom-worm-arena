@@ -690,7 +690,8 @@ export function WormGame() {
         step();
         elapsed -= 1000 / 60;
       }
-      draw(t);
+      // a single bad frame must never stop the match
+      try { draw(t); } catch (error) { console.error('draw frame failed', error); }
       if (player.alive) raf = requestAnimationFrame(loop);
     };
     raf = requestAnimationFrame(loop);
