@@ -65,6 +65,6 @@
 - [ ] Friends: search players by username, send/accept friend requests
 - [ ] Friends bar on the right side with avatars + "+" invite button; online status
 - [ ] Party invites: leader picks mode; 4 vs 4 = friends on same team, 1 vs 1 = friends face each other
-- [ ] 1 vs 30 becomes true free-for-all (everyone vs everyone)
+- [x] 1 vs 30 is now a true free-for-all (bots fight each other too)
 - [ ] Generated profile pictures / avatar icons
 - [ ] Quests: daily, weekly and one-time (play 30 min, earn gold, reach length…) with gold rewards
