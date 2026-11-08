@@ -265,7 +265,7 @@ export function WormGame() {
     const lobby = cfg.current.names.slice(1);
     let li = 0;
     for (let i = 0; i < setup.allies; i++) worms.push(makeWorm(false, lobby[li++] ?? makeTag(used), randomSkin(), 0, player.pts[0]));
-    for (let i = 0; i < setup.enemies; i++) worms.push(makeWorm(false, lobby[li++] ?? makeTag(used), randomSkin(), 1, player.pts[0]));
+    for (let i = 0; i < setup.enemies; i++) worms.push(makeWorm(false, lobby[li++] ?? makeTag(used), randomSkin(), cfg.current.mode === "frenzy" ? i + 1 : 1, player.pts[0])); // 1 vs 30 is every worm for itself
     const food: ArenaFood[] = [];
     const addFood = (x?: number, y?: number, v = 1.5, r = rnd(11, 15), kind = Math.floor(Math.random() * 3), loot = false) => {
       const p = x === undefined || y === undefined ? randInArena() : { x, y };
@@ -690,7 +690,8 @@ export function WormGame() {
         step();
         elapsed -= 1000 / 60;
       }
-      draw(t);
+      // a single bad frame must never stop the match
+      try { draw(t); } catch (error) { console.error('draw frame failed', error); }
       if (player.alive) raf = requestAnimationFrame(loop);
     };
     raf = requestAnimationFrame(loop);
