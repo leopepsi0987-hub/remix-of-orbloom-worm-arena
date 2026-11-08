@@ -1,0 +1,4 @@
+import { it, expect } from 'vitest';
+import { canBuy, goldForSeconds } from '@/lib/gold';
+it('locks nonstarter skins behind gold and allows owned skins without paying twice', () => { expect(canBuy(0, ['emerald'], 'emerald')).toBe(true); expect(canBuy(99, ['emerald'], 'tiger')).toBe(false); expect(canBuy(100, ['emerald'], 'tiger')).toBe(true); expect(canBuy(0, ['tiger'], 'tiger')).toBe(true); expect(canBuy(1000, [], 'missing')).toBe(false); });
+it('pays two gold per five seconds capped at 120 per match', () => { expect(goldForSeconds(4)).toBe(0); expect(goldForSeconds(5)).toBe(2); expect(goldForSeconds(1000)).toBe(120); });
