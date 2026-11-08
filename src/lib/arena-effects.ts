@@ -26,7 +26,7 @@ export function drawReaction(ctx: CanvasRenderingContext2D, art: HTMLCanvasEleme
   if (size <= 1) return;
   ctx.save(); ctx.translate(x + dx, y + dy); ctx.rotate(rot);
   ctx.globalAlpha = 0.25 * Math.max(0, outT); ctx.fillStyle = face === 2 ? '#ff8a7a' : '#ffe27a';
-  ctx.beginPath(); ctx.arc(0, 0, size * 0.62 + (reduced ? 0 : Math.sin(age * 0.2) * 3), 0, Math.PI * 2); ctx.fill();
+  ctx.beginPath(); ctx.arc(0, 0, Math.max(0, size * 0.62 + (reduced ? 0 : Math.sin(age * 0.2) * 3)), 0, Math.PI * 2); ctx.fill();
   ctx.globalAlpha = Math.max(0, outT);
   if (!reduced && age < 30) { // burst rays on arrival
     const r = size * (0.6 + age / 30 * 0.6); ctx.strokeStyle = '#fff6c8'; ctx.lineWidth = 3 * (1 - age / 30); ctx.lineCap = 'round';
