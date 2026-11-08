@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { drawReaction } from './arena-effects';
+import { drawReaction } from '@/lib/arena-effects';
 
 describe('drawReaction', () => {
   it('never draws a negative radius while a reaction fades out', () => {

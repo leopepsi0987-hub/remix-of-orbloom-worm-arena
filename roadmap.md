@@ -58,3 +58,13 @@
 - [x] Actual kill attribution, double/triple kill callouts and custom animated head reactions
 - [x] Polish: bouncier pop-in reactions with burst rays, denser darker fog, softer filtered music
 - [x] Verify purchases and match reward readback, storm fairness rules, artwork and phone shop; 40 tests pass. Natural storm encounter and multi-kill flow not observed in the browser match (player died early); effects checked separately.
+
+## 6. Social & Quests (requested Nov 8 2026)
+- [x] Fix match freezing after ~2 minutes (fading reaction bubble drew a negative circle and crashed the frame loop; loop now survives a bad frame)
+- [ ] First visit: choose a username (saved to account)
+- [ ] Friends: search players by username, send/accept friend requests
+- [ ] Friends bar on the right side with avatars + "+" invite button; online status
+- [ ] Party invites: leader picks mode; 4 vs 4 = friends on same team, 1 vs 1 = friends face each other
+- [ ] 1 vs 30 becomes true free-for-all (everyone vs everyone)
+- [ ] Generated profile pictures / avatar icons
+- [ ] Quests: daily, weekly and one-time (play 30 min, earn gold, reach length…) with gold rewards
