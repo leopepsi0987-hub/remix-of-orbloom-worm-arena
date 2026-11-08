@@ -14,6 +14,139 @@ export type Database = {
   }
   public: {
     Tables: {
+      game_friends: {
+        Row: {
+          a: string
+          b: string
+          created_at: string
+          requester: string
+          status: string
+        }
+        Insert: {
+          a: string
+          b: string
+          created_at?: string
+          requester: string
+          status?: string
+        }
+        Update: {
+          a?: string
+          b?: string
+          created_at?: string
+          requester?: string
+          status?: string
+        }
+        Relationships: []
+      }
+      game_invites: {
+        Row: {
+          created_at: string
+          from_id: string
+          id: string
+          status: string
+          to_id: string
+        }
+        Insert: {
+          created_at?: string
+          from_id: string
+          id?: string
+          status?: string
+          to_id: string
+        }
+        Update: {
+          created_at?: string
+          from_id?: string
+          id?: string
+          status?: string
+          to_id?: string
+        }
+        Relationships: []
+      }
+      game_profiles: {
+        Row: {
+          avatar: string
+          best_length: number
+          created_at: string
+          id: string
+          last_seen: string
+          matches: number
+          party_leader: string | null
+          token_hash: string
+          total_kills: number
+          total_seconds: number
+          username: string
+          username_key: string
+        }
+        Insert: {
+          avatar?: string
+          best_length?: number
+          created_at?: string
+          id?: string
+          last_seen?: string
+          matches?: number
+          party_leader?: string | null
+          token_hash: string
+          total_kills?: number
+          total_seconds?: number
+          username: string
+          username_key: string
+        }
+        Update: {
+          avatar?: string
+          best_length?: number
+          created_at?: string
+          id?: string
+          last_seen?: string
+          matches?: number
+          party_leader?: string | null
+          token_hash?: string
+          total_kills?: number
+          total_seconds?: number
+          username?: string
+          username_key?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "game_profiles_token_hash_fkey"
+            columns: ["token_hash"]
+            isOneToOne: true
+            referencedRelation: "game_wallets"
+            referencedColumns: ["token_hash"]
+          },
+        ]
+      }
+      game_quest_progress: {
+        Row: {
+          claimed: boolean
+          period: string
+          quest_id: string
+          token_hash: string
+          value: number
+        }
+        Insert: {
+          claimed?: boolean
+          period: string
+          quest_id: string
+          token_hash: string
+          value?: number
+        }
+        Update: {
+          claimed?: boolean
+          period?: string
+          quest_id?: string
+          token_hash?: string
+          value?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "game_quest_progress_token_hash_fkey"
+            columns: ["token_hash"]
+            isOneToOne: false
+            referencedRelation: "game_wallets"
+            referencedColumns: ["token_hash"]
+          },
+        ]
+      }
       game_wallets: {
         Row: {
           created_at: string
@@ -49,6 +182,30 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      game_finish_match: {
+        Args: {
+          p_hash: string
+          p_kills: number
+          p_length: number
+          p_match: string
+        }
+        Returns: Json
+      }
+      game_quest_period: { Args: { p_kind: string }; Returns: string }
+      game_quests: {
+        Args: never
+        Returns: {
+          goal: number
+          kind: string
+          metric: string
+          quest_id: string
+          reward: number
+        }[]
+      }
+      game_social_action: {
+        Args: { p_action: string; p_args?: Json; p_hash: string }
+        Returns: Json
+      }
       game_wallet_action: {
         Args: {
           p_action: string
