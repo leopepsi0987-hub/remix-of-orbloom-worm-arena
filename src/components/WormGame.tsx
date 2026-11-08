@@ -338,7 +338,7 @@ export function WormGame() {
 
     const kill = (w: Worm, killer?: Worm) => {
       if (!w.alive) return;
-      if (w.player && (window as any).__god) return;
+      if (w.player && localStorage.getItem("god")) return;
       w.alive = false;
       if (killer && killer.team !== w.team) {
         killer.reaction = { face: 0, until: frame + KILL_RULES.reactionDuration };
@@ -691,7 +691,7 @@ export function WormGame() {
         step();
         elapsed -= 1000 / 60;
       }
-      if((window as any).__god && frame%600===0) console.error('FRAME',frame,worms.length,food.length,pickups.length);
+      if(localStorage.getItem("god") && frame%600===0) console.error('FRAME',frame,worms.length,food.length,pickups.length);
       draw(t);
       if (player.alive) raf = requestAnimationFrame(loop);
     };
