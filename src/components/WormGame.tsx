@@ -338,6 +338,7 @@ export function WormGame() {
 
     const kill = (w: Worm, killer?: Worm) => {
       if (!w.alive) return;
+      if (w.player) console.error("KILLP", !!localStorage.getItem("god"), new Error().stack);
       if (w.player && localStorage.getItem("god")) return;
       w.alive = false;
       if (killer && killer.team !== w.team) {
